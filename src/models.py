@@ -77,7 +77,8 @@ def single_fit_decision_tree(data_frame: pd.DataFrame, pplot_tree: bool = False,
     return accuracy
 
 
-def optimize_max_trees(data_frame: pd.DataFrame, max_depth: int = 10, pplot: bool = False) -> DataFrame:
+def optimize_max_trees(data_frame: pd.DataFrame, max_depth: int = 10, pplot: bool = False,
+                       result_to_file: bool = False, directory: str = None) -> DataFrame:
     """
 
     Args:
@@ -94,11 +95,20 @@ def optimize_max_trees(data_frame: pd.DataFrame, max_depth: int = 10, pplot: boo
     df_results["Max_Depth"] = [x for x in range(1, max_depth)]
     df_results["Test_Accuracy"] = [accuracy_results[x] for x in list(accuracy_results)]
 
+    if result_to_file:
+        df_filename = "optimal_decision_tree_depth.csv"
+        df_results.to_csv(os.path.join(directory, df_filename))
+
     if pplot:
         plt.plot(df_results["Max_Depth"], df_results["Test_Accuracy"])
         plt.grid(b=True)
         plt.title("Decision Tree - Best Depth")
         plt.tight_layout()
+
+        if result_to_file:
+            plt_filename = "optimal_decision_tree_depth.png"
+            plt.savefig(os.path.join(directory, plt_filename))
+
         plt.show()
 
     return df_results

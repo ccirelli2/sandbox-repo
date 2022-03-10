@@ -113,16 +113,16 @@ data_frame["target"] = list(map(lambda x: int(x), data_frame.target.values))
 ########################################################################################################################
 
 # Fit Single Model
-"""
+
 accuracy = m_models.single_fit_decision_tree(
     data_frame=data_frame,
     pplot_tree=True,
     pplot_confusion_matrix=True,
     max_depth=4)
-"""
+
 
 # Get Optimal Tree Dept# h
-df_accuracy = m_models.optimize_max_trees(data_frame, max_depth=12)
+df_accuracy = m_models.optimize_max_trees(data_frame, max_depth=12, result_to_file=True, directory=DIR_RESULTS)
 
 
 

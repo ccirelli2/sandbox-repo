@@ -1,3 +1,4 @@
+SQLAlchemy==1.4.32
 certifi==2021.10.8
 cfgv==3.3.1
 charset-normalizer==2.0.12
@@ -48,3 +49,7 @@ urllib3==1.26.8
 virtualenv==20.13.1
 websocket-client==1.2.3
 zict==2.0.0
+
+pandas~=1.4.0
+mysql-connector-python~=8.0.28
+scikit-learn~=1.0.2

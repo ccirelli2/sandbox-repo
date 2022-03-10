@@ -24,7 +24,7 @@ sys.path.append(DIR_SRC)
 from src.connections import mysql_connect
 from src import utilities as m_utils
 from src.utilities import my_timeit
-from src.queries import query_wine
+from src.queries import query_wine, insert_dt_opt_depth
 from src import visualizations as my_viz
 from src import transformations as my_trans
 from src import models as m_models
@@ -116,14 +116,16 @@ data_frame["target"] = list(map(lambda x: int(x), data_frame.target.values))
 
 accuracy = m_models.single_fit_decision_tree(
     data_frame=data_frame,
-    pplot_tree=True,
-    pplot_confusion_matrix=True,
+    pplot_tree=False,
+    pplot_confusion_matrix=False,
     max_depth=4)
 
 
 # Get Optimal Tree Dept# h
 df_accuracy = m_models.optimize_max_trees(data_frame, max_depth=12, result_to_file=True, directory=DIR_RESULTS)
 
+insert_dt_opt_depth(data_frame=df_accuracy, max_depth_col_name="Max_Depth", accuracy_col_name="Test_Accuracy",
+                    conn=my_conn)
 
 
 

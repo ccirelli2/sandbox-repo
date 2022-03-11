@@ -10,7 +10,6 @@ from decouple import config as d_config
 import logging
 import warnings
 import matplotlib.pyplot as plt
-import graphviz
 
 
 from sklearn.model_selection import train_test_split
